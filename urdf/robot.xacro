@@ -1,0 +1,309 @@
+<?xml version="1.0"?>
+
+<robot name="roblucci" xmlns:xacro="https://www.ros.org/wiki/xacro" >
+    
+
+ <xacro:include filename="$(find assignment2)/urdf/materials.xacro" />
+ <xacro:include filename="$(find assignment2)/urdf/robot.gazebo" />
+
+ <xacro:macro name="cylinder_inertia" params="mass r l">
+    <inertia ixx="${mass*(3*r*r+l*l)/12}" ixy = "0" ixz = "0"
+                iyy="${mass*(3*r*r+l*l)/12}" iyz = "0" izz="${mass*(r*r)/2}" />
+    
+ </xacro:macro>
+
+    	<xacro:property name="length_wheel" value="0.04" />
+	<xacro:property name="radius_wheel" value="0.1" />
+
+	<xacro:macro name="default_inertial" params="mass">
+               <inertial>
+                       <mass value="${mass}" />
+                       <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+                       <inertia ixx="0.000526666666667" ixy="0" ixz="0" iyy="0.000526666666667" iyz="0" izz="0.001"/>
+               </inertial>
+	</xacro:macro>
+
+    <xacro:macro name="wheel_geometry">
+		<geometry>
+       			<cylinder length="0.04" radius="0.1"/>
+     		</geometry>
+	</xacro:macro>
+	
+
+  <link name="link_chassis">
+    <!-- pose and inertial -->
+    <pose>0 0 0.1 0 0 0</pose>
+    <inertial>
+      <mass value="5"/>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+      <inertia ixx="0.0395416666667" ixy="0" ixz="0" iyy="0.106208333333" iyz="0" izz="0.106208333333"/>
+    </inertial>
+    <!-- body -->
+    <collision name="collision_chassis">
+      <geometry>
+        <box size="0.5 0.3 0.07"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.5 0.3 0.07"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+   
+  <link name="link_right_wheel">
+    <xacro:default_inertial mass="0.2" />
+    <collision name="link_right_wheel_collision">
+      <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+       <cylinder length="0.04" radius="0.107"/>
+      </geometry>
+      <surface>
+      <friction>
+        <ode>
+          <mu1>1.0</mu1> <!-- This will set both mu1 and mu2 to the same value -->
+          <mu2>1.0</mu2> <!-- This is redundant since mu is set, but for clarity -->
+          <kp>1000000.0</kp> <!-- A high value for a stiff contact -->
+          <kd>1.0</kd>
+        </ode>
+      </friction>
+    </surface>
+    </collision>
+    <visual name="link_right_wheel_visual">
+      <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.107"/>
+        <material name="black"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="link_left_wheel">
+    <xacro:default_inertial mass="0.2" />
+    <collision name="link_left_wheel_collision">
+      <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+       <cylinder length="0.04" radius="0.107"/>
+     </geometry>
+     <surface>
+      <friction>
+        <ode>
+          <mu1>1.0</mu1> <!-- This will set both mu1 and mu2 to the same value -->
+          <mu2>1.0</mu2> <!-- This is redundant since mu is set, but for clarity -->
+          <kp>1000000.0</kp> <!-- A high value for a stiff contact -->
+          <kd>1.0</kd>
+        </ode>
+      </friction>
+    </surface>
+    </collision>
+    <visual name="link_left_wheel_visual">
+      <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.107"/>
+        <material name="grey"/>
+      </geometry>
+      </visual>
+  </link>
+  
+  <joint name="joint_right_wheel" type="continuous">
+    <origin rpy="0 0 0" xyz="0.13 0.17 -0.01"/>
+    <child link="link_right_wheel"/>
+    <parent link="link_chassis"/>
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <joint_properties damping="1.0" friction="1.0"/>
+  </joint>
+ 
+  <joint name="joint_left_wheel" type="continuous">
+    <origin rpy="0 0 0" xyz="0.13 -0.17 -0.01"/>
+    <child link="link_left_wheel"/>
+    <parent link="link_chassis"/>
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <joint_properties damping="1.0" friction="1.0"/>
+  </joint>
+  
+  <link name="link_right_wheel_back">
+    <xacro:default_inertial mass="0.2" />
+    <collision name="link_right_wheel_back_collision">
+      <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+       <cylinder length="0.04" radius="0.107"/>
+      </geometry>
+      <surface>
+      <friction>
+        <ode>
+          <mu1>1.0</mu1> <!-- This will set both mu1 and mu2 to the same value -->
+          <mu2>1.0</mu2> <!-- This is redundant since mu is set, but for clarity -->
+          <kp>1000000.0</kp> <!-- A high value for a stiff contact -->
+          <kd>1.0</kd>
+        </ode>
+      </friction>
+    </surface>
+    </collision>
+    <visual name="link_right_wheel_back_visual">
+      <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.107"/>
+        <material name="black"/>
+      </geometry>
+    </visual>
+  </link>
+  
+  <link name="link_left_wheel_back">
+    <xacro:default_inertial mass="0.2" />
+    <collision name="link_left_wheel_back_collision">
+      <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+       <cylinder length="0.04" radius="0.107"/>
+      </geometry>
+      <surface>
+      <friction>
+        <ode>
+          <mu1>1.0</mu1> <!-- This will set both mu1 and mu2 to the same value -->
+          <mu2>1.0</mu2> <!-- This is redundant since mu is set, but for clarity -->
+          <kp>1000000.0</kp> <!-- A high value for a stiff contact -->
+          <kd>1.0</kd>
+        </ode>
+      </friction>
+    </surface>
+    </collision>
+    <visual name="link_left_wheel_back_visual">
+      <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.107"/>
+        <material name="grey"/>
+      </geometry>
+    </visual>
+  </link>
+  
+  <joint name="joint_right_wheel_back" type="continuous">
+    <origin rpy="0 0 0" xyz="-0.13 0.17 -0.01"/>
+    <child link="link_right_wheel_back"/>
+    <parent link="link_chassis"/>
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <joint_properties damping="1.0" friction="1.0"/>
+  </joint>
+  
+  <joint name="joint_left_wheel_back" type="continuous">
+    <origin rpy="0 0 0" xyz="-0.13 -0.17 -0.01"/>
+    <child link="link_left_wheel_back"/>
+    <parent link="link_chassis"/>
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <joint_properties damping="1.0" friction="1.0"/>
+  </joint>
+  
+  <link name="laser">
+    <xacro:cylinder_inertia mass="0.2" r="0.02" l="0.01" />
+    
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.02" length="0.02"/>
+      </geometry>
+    </collision>
+    
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.02" length="0.02"/>
+      </geometry>
+      <material name="white" />
+    </visual>
+
+    
+  </link>
+
+  <joint name="joint_laser" type="fixed">
+    <origin xyz="0.25 0 0.045" rpy="0 0 0"/>
+    <parent link="link_chassis"/>
+    <child link="laser"/>
+  </joint>
+
+<!--arm definition -->
+
+  <link name="arm_link_01">
+    <inertial>
+      <mass value="0.3"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="0.0" ixy="0" ixz="0" iyy="0.0" iyz="0" izz="0.0"/>
+    </inertial>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.4"/>
+      </geometry>
+    </collision>
+    <visual>	
+      <origin xyz="0 0 0.01" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.2"/>
+      </geometry>
+      <material name="green" />
+    </visual>
+  </link>
+
+  <joint name="arm_joint_01" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.2"/>
+    <origin rpy="0 0 0" xyz="0 0 0.09"/>
+    <dynamics damping="2" />
+    <parent link="link_chassis"/>
+    <child link="arm_link_01"/>
+  </joint>
+
+  <!-- Camera -->
+  <link name="camera_link">
+    <inertial>
+      <mass value="0.4"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.0395416666667" ixy="0" ixz="0" iyy="0.106208333333" iyz="0" izz="0.106208333333"/>
+    </inertial>
+  
+    <collision>
+      <origin xyz="0 0 0.025" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.05 0.05"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0.025" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.02 0.05 0.05"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+
+  </link>
+
+  <joint name="camera_joint" type="fixed">
+    <axis xyz="0 0 0" />
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <parent link="arm_link_01"/>
+    <child link="camera_link"/>
+  </joint>
+
+<transmission name="arm_joint_01_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="arm_joint_01">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor1">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalInterface>1</mechanicalInterface>
+  </actuator>
+</transmission>
+
+
+</robot>	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+
+
+  <node name="rotating_camera" pkg="assignment2" type="rotating_camera.py" output="screen" launch-prefix = "xterm -e"/>
+  <node name="map" pkg="assignment2" type="map.py" output="screen" launch-prefix = "xterm -e"/>
+
+  <node name= "mb_robot" pkg= "assignment2" type="mb_robot.py" output="screen" launch-prefix = "xterm -e"/>
+  <node name="battery" pkg="assignment2" type="battery.py" output="screen" launch-prefix = "xterm -e"/>
+  <node name= "statemachine" pkg= "assignment2" type="statemachine.py" output="screen" launch-prefix = "xterm -e"/>
+
+</launch>

@@ -1,0 +1,30 @@
+mobile_base_controller:
+  type: "diff_drive_controller/DiffDriveController"
+  left_wheel: 'joint_left_wheel'
+  right_wheel: 'joint_right_wheel'
+  publish_rate: 50.0             # Publishing rate of the controller
+  wheel_separation: 0.4         # Distance between the left and right wheels
+  wheel_radius: 0.1             # Radius of the wheel
+  
+  # Frame names
+  base_frame_id: 'link_chassis'
+  odom_frame_id: 'odom'
+  
+  # Topics
+  cmd_vel_topic: 'cmd_vel'      # Topic on which the controller listens for velocity commands
+  odom_topic: 'odom'            # Topic on which the controller publishes odometry information
+  
+  # Velocity limits
+  linear:
+    x:
+      has_velocity_limits: true
+      max_velocity: 5.0         # Maximum linear velocity
+      min_velocity: -5.0        # Minimum linear velocity
+  angular:
+    z:
+      has_velocity_limits: true
+      max_velocity: 5.0         # Maximum angular velocity
+      min_velocity: -5.0        # Minimum angular velocity
+  
+  # Whether to publish tf (transformation) between odom and base_link
+  publish_tf: true
