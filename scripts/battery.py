@@ -3,7 +3,6 @@
 import rospy
 import roslib
 import random
-import threading
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from std_msgs.msg import Bool, String

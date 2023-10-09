@@ -38,10 +38,7 @@ Subribes to:
 	
 """
 
-#client = ArmorClient("example", "ontoRef")
-"""
-global variable that opens the client
-"""
+
 ready = False
 """
 global variable for the value of the /load topic
@@ -95,7 +92,7 @@ def view_time(time_list):
 	
 def visited(nr):
 	"""
-	function that update the two data propriety 'now' and 'visitedAt'; at the end replace the robot in the staring position
+	function that update the data propriety 'visitedAt'
 
 	Args:
 		-r_n the new room where the robot is
@@ -255,7 +252,7 @@ def create_coord():
 
 def move(cr, nr):
 	"""
-	function that changes the position of the robot; it publishes on the /target topic the coordinates and on the /startmove topic that the robot is ready to leave the room
+	function that changes the position of the robot and change the data proprietry 'now'; it publishes on the /target topic the coordinates and on the /startmove topic that the robot is ready to leave the room
 	
 	Args:
 		-cr: the room that the robot leaves
