@@ -55,7 +55,9 @@ This is an accelerated video of the behaviour of thr robot.
 # *Instalation*
 To run this code firstly make sure that you have correctly installed all the dependencies needed: `ROS_CONTROL`, `ARUCO_ROS`, `SMACH`, `aRMOR`
 
-Insiede your ROS workspace copy the package
+Insiede your ROS workspace copy the package <br>
+
+`git clone https://github.com/tommasodeangeli97/assignment2.git`
 
 Make shure that the python nodes are executable <br>
 
@@ -84,7 +86,3 @@ now is possible to to launch the code <br>
 and then <br>
 
 `roslaunch assignment2 launcher.launch`
-
-
-
-
