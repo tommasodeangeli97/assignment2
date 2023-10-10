@@ -13,6 +13,7 @@ The invironment is composed by trhee corridors and fours rooms, differently from
 
 # *Modules*
 *State_machine* 
+--
 ![graph](https://github.com/tommasodeangeli97/assignment2/assets/92479113/962a74d6-5ec0-4a1f-b277-848206fb6c6d)
 It's the main behaviour of the robot:
 
@@ -25,12 +26,15 @@ It's the main behaviour of the robot:
 *`BATTERY_LOW` when the battery signal is triggered the robot goes into this status, wherever it is it goes back to the E room to recharge itself; if the robot is inside a room firstly it returns to the nearest corridor and then to the E room.
 
 *Battery module*
+--
 It is the node that gives the status of the battery, after a random time (between 180 and 240 seconds) it triggers the battery low signal. It checks if the robot is the E room before waiting the time for the full charge of the robot and then it triggers the battery full status.
 
 *Move_base client*
+--
 It recieves the coordinates from the *State_machine* and it calls the move base action server, it checks if the robot is `ready_to_move` before starting.
 
 *Joint controller module*
+--
 At the start of the simulation this module controls in position the rotation of the arm joint of the robot making possible to scan all the markers, the same structure is then repeated inside the `PATROLLING_ROOM` status of the state machine.
 
 *
