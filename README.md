@@ -46,4 +46,45 @@ Is the module in charge of creating the map, it checks if all the markes are det
 --
 This module was already given; it inspects the detection of the camera inputs and gives back the ID of the markers.
 
+# *Behaviour preview*
+
+https://github.com/tommasodeangeli97/assignment2/assets/92479113/b39a759a-8e92-48ac-ad2b-0294420a4e32
+
+This is an accelerated video of the behaviour of thr robot.
+
+# *Instalation*
+To run this code firstly make sure that you have correctly installed all the dependencies needed: `ROS_CONTROL`, `ARUCO_ROS`, `SMACH`, `aRMOR`
+
+Insiede your ROS workspace copy the package
+
+Make shure that the python nodes are executable <br>
+
+ ` chmod +x <name_of_file.py> `
+
+Inside the `map.py` code change the root of your package <br>
+
+`  client.call('LOAD','FILE','',['root_to_your_package/topological_map/topological_map.owl', 'http://bnc/exp-rob-lab/2022-23', 'true', 'PELLET', 'false']) `
+
+and <br>
+
+`  client.call('SAVE','','',['root_to_your_package/topological_map/new_map.owl']) `
+
+The same inside the `statemachine.py` code <br>
+
+`  client.call('LOAD','FILE','',['root_to_your_package/topological_map/new_map.owl', 'http://bnc/exp-rob-lab/2022-23', 'true', 'PELLET', 'false']) `
+
+from the terminal go inside the root of your workspace and do <br>
+
+ ` catkin_make `
+
+now is possible to to launch the code <br>
+
+`roslaunch assignment2 assignment2.launch`
+
+and then <br>
+
+`roslaunch assignment2 launcher.launch`
+
+
+
 
