@@ -15,6 +15,7 @@ The invironment is composed by trhee corridors and fours rooms, differently from
 *State_machine* 
 --
 ![graph](https://github.com/tommasodeangeli97/assignment2/assets/92479113/962a74d6-5ec0-4a1f-b277-848206fb6c6d)
+
 It's the main behaviour of the robot:
 
 *`RECIEVING_MAP` the initial status where the robot waits for the map, it creates a dictionary where the different rooms are collected with their coordinates.
