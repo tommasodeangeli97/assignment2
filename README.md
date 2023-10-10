@@ -40,6 +40,10 @@ At the start of the simulation this module controls in position the rotation of 
 
 *Map module*
 --
-Is the module in charge of creating the map, it checks if all the markes are detected and creates the map starting from the ontology_map.owl, it creates a new ontoly with all the rooms and the connection between them
+Is the module in charge of creating the map, it checks if all the markes are detected and creates the map starting from the ontology_map.owl, it creates a new ontoly with all the rooms and the connection between them.
 
-*
+*Marker server module*
+--
+This module was already given; it inspects the detection of the camera inputs and gives back the ID of the markers.
+
+
