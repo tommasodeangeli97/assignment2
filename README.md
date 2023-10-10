@@ -4,7 +4,7 @@
 This repository contains the the ROS package for the upgrade of the first assignment (https://github.com/tommasodeangeli97/finite-state-machine---security-robot).
 The robot here is modeled for gazebo and rviz, it moves using move_base and it acquires video stimulus like the markers that are put inside the environment.
 To scan the ARUCO markers inside the environment is used the `OpenCV` library, to move the robot in an autonomous way is used `move_base` and to map the the varius rooms is used `gmapping`, all the oters used tools are specified in the repository on top.
-The entire documentation of the varius modules that creates the architecture is avaible here 
+The entire documentation of the varius modules that creates the architecture is avaible here https://tommasodeangeli97.github.io/assignment2/
 
 # *Environment*
 ![environment](https://github.com/tommasodeangeli97/assignment2/assets/92479113/87131fe7-be04-4662-ad79-99b7beb9a54e)
