@@ -86,3 +86,19 @@ now is possible to to launch the code <br>
 and then <br>
 
 `roslaunch assignment2 launcher.launch`
+
+# *System assumpion*
+* The robot is capable of reaching all the coordinates that are given to him
+* There is a finite numeber of markers that needs to be detected before starting the construction of the map
+* All the possible obstacles are detectable from the laser scan
+* There are no stairs or holes on the ground
+
+# *System improvements*
+* The tuning of move_base can be improved for having a better and more reliable behaviour
+* It could be improved the synchronization between the state machine and the battery module
+* The usege of so many global variables could be reviewed and others solution could be adopted for improuving the speed of the code
+
+# *Authors and contacts*
+Author: Tommaso De Angeli (https://github.com/tommasodeangeli97) <br>
+Email: tommaso.deangeli.97@gmail.com <br>
+Professor: Luca Buoncompagni (https://github.com/buoncubi) and Carmine Recchiuto (https://github.com/CarmineD8)
