@@ -38,4 +38,8 @@ It recieves the coordinates from the *State_machine* and it calls the move base 
 --
 At the start of the simulation this module controls in position the rotation of the arm joint of the robot making possible to scan all the markers, the same structure is then repeated inside the `PATROLLING_ROOM` status of the state machine.
 
+*Map module*
+--
+Is the module in charge of creating the map, it checks if all the markes are detected and creates the map starting from the ontology_map.owl, it creates a new ontoly with all the rooms and the connection between them
+
 *
